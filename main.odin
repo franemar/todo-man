@@ -5,20 +5,28 @@ import "core:fmt"
 import "core:os"
 import "core:strings"
 
-PriorityType :: union {
-    string,
-    nil
-}
 
-priority := make(map[PriorityType]string)
-defer delete(priority)
+get_priority :: proc(line: string) -> string {
 
-priority["(A)"] = "Highest"
-priority["(B)"] = "High"
-priority["(C)"] = "Normal"
-priority["(D)"] = "Low"
-priority["(Z)"] = "Lowest"
-priority["(Z)"] = "Highest"
+	res: string
+	priority := make(map[string]Maybe(string))
+	defer delete(priority)
+
+	priority["Highest"] = "(A)"
+	priority["High"] = "(B)"
+	priority["Normal"] = "(C)"
+	priority["Low"] = "(D)"
+	priority["Lowest"] = "(Z)"
+	priority["Undefined"] = nil
+
+	// test
+	if strings.contains(line, "(A)") {
+		res = "Highest"
+	}
+
+	return res
+} 
+
 
 /*Priority := map[string]string{
 	 = "(A)",
@@ -31,7 +39,7 @@ priority["(Z)"] = "Highest"
 
 Task :: struct {
 	completed: bool,
-	priority: Priority,
+	priority: string,
 	completion: datetime.DateTime,
 	creation: datetime.DateTime,
 	description: string,
@@ -49,6 +57,8 @@ parse_task :: proc(line: string) -> Task {
 	} else {
 		task.completed = false
 	}
+
+	task.priority = get_priority(line)
 
 	return task
 } 

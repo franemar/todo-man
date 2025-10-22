@@ -5,7 +5,29 @@ import "core:fmt"
 import "core:os"
 import "core:strings"
 
-Priority :: enum{Highest, High, Normal, Low, Lowest, NoPriority}
+PriorityType :: union {
+    string,
+    nil
+}
+
+priority := make(map[PriorityType]string)
+defer delete(priority)
+
+priority["(A)"] = "Highest"
+priority["(B)"] = "High"
+priority["(C)"] = "Normal"
+priority["(D)"] = "Low"
+priority["(Z)"] = "Lowest"
+priority["(Z)"] = "Highest"
+
+/*Priority := map[string]string{
+	 = "(A)",
+	"High" = "(B)",
+	"Normal" = "(C)",
+	"Low" = "(D)",
+	"Lowest" = "(Z)",
+	"NoPriority" = nil
+}*/
 
 Task :: struct {
 	completed: bool,

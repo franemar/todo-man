@@ -8,3 +8,4 @@ Research self-publishing services +Novel @Computer
 x Download Todo.txt mobile app @Phone
 (Z) Lowest priority sample
 Due priority sample with tz due:2025-12-31T16:02:00-03:00
+Recurring task sample rec:w #weekly

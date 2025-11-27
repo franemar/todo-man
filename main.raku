@@ -1,5 +1,31 @@
 #!/usr/bin/env raku
-sub read-file(Str $filepath) {
+my %task = %{
+	'completed' => False,
+	'priority' => Nil,
+	'completion' => Nil,
+	'creation' => Nil,
+	'description' => '',
+	'tags' => Nil,
+	'context' => Nil,
+	'project' => Nil,
+	'due' => Nil
+}
+
+sub parse-line(Str $line) {
+    my %ltask = %task;
+
+    my $rx = rx{ ^\\(<[A..Z]>) };
+
+    say $rx.raku;
+
+    my $priority = $rx ~~ $line;
+
+    if $priority { %ltask['priority'] = $priority};
+
+    return %ltask;
+}
+
+sub parse-file(Str $filepath) {
 
     my $txtfile = $filepath.IO;
 
@@ -8,11 +34,11 @@ sub read-file(Str $filepath) {
         return
     }
 
-    my @processed_lines = hyper for $txtfile.lines -> $line {
+    my @processed_lines = hyper for $txtfile.lines(:!chomp) -> $line {
         # Perform operations on $line
         # For example, convert to uppercase:
         #$line.uc;
-        $line;
+        parse-line($line);
     };
 
     # Test
@@ -35,5 +61,5 @@ sub create_tempfile($filecontent) {
 
 # TO-DO: copy first and process later
 sub MAIN(Str $filepath = 'todo.txt') {
-    create_tempfile(read-file($filepath));
+    say parse-file($filepath);
 }

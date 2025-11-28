@@ -1,11 +1,14 @@
-(A) Call Mom @Phone +Family
-(A) Schedule annual checkup +Health
-(B) Outline chapter 5 +Novel @Computer
-(C) Add cover sheets @Office +TPSReports
-Plan backyard herb garden @Home
-Pick up milk @GroceryStore
-Research self-publishing services +Novel @Computer
-x Download Todo.txt mobile app @Phone
+Task with description only
+(A) Task with highest priority, context and project @Phone +Family
+(A) Task with highest priority and context +Health
+(B) Task with high priority
+(C) Task with medium priority
 (Z) Lowest priority sample
-Due priority sample with tz due:2025-12-31T16:02:00-03:00
+Task of project @Home
+Task with multi context +Family +Health
+x Completed task with context and project @Phone +Health
+x 2025-12-31 Completed task with completion date
+x 2025-12-31 2025-12-01 Completed task with completion and start date
+x (Z) Completed task with priority
+Task with due sample with tz due:2025-12-31T16:02:00-01:30
 Recurring task sample rec:w #weekly

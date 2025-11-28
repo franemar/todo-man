@@ -12,15 +12,39 @@ my %task = %{
 }
 
 sub parse-line(Str $line) {
+
+    grammar G {
+        token TOP { [<completed>]?<whspc>
+                    [<priority>]?<whspc>
+                    [<completion>]?<whspc>
+                    [<creation>]?<whspc>
+                    <description><whspc>
+                    [<tags>]?<whspc>
+                    [<context>]?<whspc>
+                    [<project>]?<whspc>
+                    [<due>]?<whspc>
+        }
+        token completed   { \w+ }
+        token priority    { \\(<[A..Z]>) }
+        token completion  { \w+ }
+        token creation    { \w+ }
+        token description { .* }
+        token tags        { .* }
+        token context     { .* }
+        token project     { .* }
+        token due         { .* }
+
+        token whspc { \s* }
+    }
+
     my %ltask = %task;
 
-    my $rx = rx{ ^\\(<[A..Z]>) };
+    my $m = G.parse($line);
 
-    say $rx.raku;
+    # test
+    say $m;
 
-    my $priority = $rx ~~ $line;
-
-    if $priority { %ltask['priority'] = $priority};
+    %ltask['priority'] = m<priority>;
 
     return %ltask;
 }

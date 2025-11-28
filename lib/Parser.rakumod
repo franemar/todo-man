@@ -1,3 +1,5 @@
+unit module Parser;
+
 my %task = %{
 	'completed' => False,
 	'priority' => Nil,
@@ -10,8 +12,7 @@ my %task = %{
 	'due' => Nil
 }
 
-
-sub parse-line(Str $line) {
+our sub parse-line(Str $line) is export {
 
     my @rsrv-tokens := ('@','+','due:','rec:');
 

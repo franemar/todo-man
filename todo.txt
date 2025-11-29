@@ -11,4 +11,7 @@ x 2025-12-31 Completed task with completion date
 x 2025-12-31 2025-12-01 Completed task with completion and start date
 x (Z) Completed task with priority
 Task with due sample with tz due:2025-12-31T16:02:00-01:30
-Recurring task sample rec:w #weekly
+2025-11-29T22:02:00 Recurring task sample id:1 ends:2 rec:w #weekly
+2025-11-29T22:02:00 Recurring task sample instance 1 rechid:1 due:2025-12-06T22:00
+2025-11-29T22:02:00 Recurring task sample instance 2 rechid:1 due:2025-12-13T22:00
+Task with link:www.example.net
